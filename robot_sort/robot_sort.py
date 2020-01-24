@@ -97,13 +97,49 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        for i in range(0, len(l)):
+        	# we compare the item we are hold, if we are holding None, we need to grab the item at the current position
+        	self.compare_item()
+        	self.swap_item()
+	        # We need to check if we can move right first, if we can...
+	        if self.can_move_right() == True:
+		        # we move to the right
+		        self.move_right()
+	        # if we cannot... we want to set the current position of the robot back to the beggining
+	        else:
+	        	self._position = 0
+	        # we need to compare the item we are holding with our current positions item
+	        if self.compare_item() == 1:
+	        	if self.can_move_right() == True:
+	        		self.move_right()
+	        else:
+				if self.can_move_right() == True:
+					self.move_right()
+				else:
+					self._position = 0
+	        self._position += self.compare_item()
+	        self.swap_item()
+	        print('Can we move right?', self.can_move_right())
+	        self.move_right()
+	        # we check if the item we are holding is greater than the item at the current position
+	        self.compare_item()
+	        # if it is, we swap item with we are holding with item in current position
+	        self.swap_item()
+	        # else we want to continue and check if we can move right..
+	        # if we can, we move right..
+	        print('Can we move right?', self.can_move_right())
+	        self.move_right()
+	        print('Can we move right?', self.can_move_right())
+	        print('item we are holding', self._item)
+	        print('current position', self._position)
+	        print('compare item', self.compare_item())
+
 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
-
+    	# v   v
     l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
 
     robot = SortingRobot(l)
